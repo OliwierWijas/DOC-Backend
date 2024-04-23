@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  db:
+    image: "postgres:14.1-alpine"
+    restart: always
+    container_name: "assignment-database-container"
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=assignment-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+
+  backend:
+    image: 'backend:v1'
+    build:
+      context: ./
+    container_name: 'assignment-backend-container'
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/assignment-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  frontend:
+    build:
+      context: ../frontend/
+    container_name: 'assignment-frontend-container'
+    image: 'frontend:v1'
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+
+
+volumes:
+  db:
+    driver: local
