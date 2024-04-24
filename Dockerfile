@@ -1,4 +1,11 @@
+FROM maven:3.9.6-amazoncorretto-17-debian AS build
+RUN mkdir -p /app
+WORKDIR /app
+COPY pom.xml /app
+COPY src /app/src
+RUN mvn -B package --file pom.xml -DskipTests
+
 FROM openjdk:17
-COPY target/backend-1.jar app.jar
+COPY --from=build /app/target/*jar backend-1.jar
 EXPOSE 8080
-CMD java -jar app.jar
+ENTRYPOINT ["java", "-jar", "backend-1.jar"]
