@@ -18,7 +18,7 @@ spec:
         kompose.cmd: kompose convert
         kompose.version: 1.32.0 (765fde254)
       labels:
-        io.kompose.network/demo-default: "true"
+        io.kompose.network/backend-default: "true"
         io.kompose.service: backend
     spec:
       containers:
@@ -26,12 +26,12 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: postgres
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://db:5432/assignment-db
+              value: jdbc:postgresql://db:5432/assignmentdb
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: update
-          image: backend:v1
+          image: backend:v2
           name: assignment-backend-container
           ports:
             - containerPort: 8080

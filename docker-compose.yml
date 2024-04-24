@@ -7,15 +7,15 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/14/main/data
     environment:
-      - POSTGRES_DB=assignment-db
+      - POSTGRES_DB=assignmentdb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
 
   backend:
-    image: 'backend:v1'
+    image: 'backend:v2'
     build:
       context: ./
     container_name: 'assignment-backend-container'
@@ -24,7 +24,7 @@ services:
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/assignment-db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/assignmentdb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -33,7 +33,7 @@ services:
     build:
       context: ../frontend/
     container_name: 'assignment-frontend-container'
-    image: 'frontend:v1'
+    image: 'frontend:v2'
     ports:
       - 3000:3000
     depends_on:

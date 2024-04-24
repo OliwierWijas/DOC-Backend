@@ -18,11 +18,11 @@ spec:
         kompose.cmd: kompose convert
         kompose.version: 1.32.0 (765fde254)
       labels:
-        io.kompose.network/demo-default: "true"
+        io.kompose.network/backend-default: "true"
         io.kompose.service: frontend
     spec:
       containers:
-        - image: frontend:v1
+        - image: frontend:v2
           name: assignment-frontend-container
           ports:
             - containerPort: 3000

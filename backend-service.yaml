@@ -14,5 +14,3 @@ spec:
       targetPort: 8080
   selector:
     io.kompose.service: backend
-  #type: LoadBalancer
-  #loadBalancerIP: 203.0.113.1
