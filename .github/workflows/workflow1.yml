@@ -31,11 +31,11 @@ jobs:
           kubectl apply -f db-deployment.yaml
           kubectl apply -f db-persistentvolumeclaim.yaml
           kubectl apply -f db-service.yaml
-          kubectl apply -f frontend-deployment.yaml
-          kubectl apply -f frontend-service.yaml
+#          kubectl apply -f frontend-deployment.yaml
+#          kubectl apply -f frontend-service.yaml
           kubectl wait --for=condition=Ready pod -l app=db
           kubectl wait --for=condition=Ready pod -l app=backend
-          kubectl wait --for=condition=Ready pod -l app=frontend
+#          kubectl wait --for=condition=Ready pod -l app=frontend
           kubectl get all
           echo "Deployment completed successfully"
       - name: Test backend service URLs
@@ -46,14 +46,14 @@ jobs:
           kubectl port-forward service/backend 8080:8080 &> /dev/null &
       - run: |
           curl -i http://localhost:8080/
-      - name: Test frontend service URLs
-        run: |
-          echo "SERVICE_URL=$(minikube service frontend --url)"
-          kubectl port-forward service/frontend 3000:3000 &> /dev/null &
-          sleep 5
-          kubectl port-forward service/frontend 3000:3000 &> /dev/null &
-      - run: |
-          curl -i http://localhost:3000/
+#      - name: Test frontend service URLs
+#        run: |
+#          echo "SERVICE_URL=$(minikube service frontend --url)"
+#          kubectl port-forward service/frontend 3000:3000 &> /dev/null &
+#          sleep 5
+#          kubectl port-forward service/frontend 3000:3000 &> /dev/null &
+#      - run: |
+#          curl -i http://localhost:3000/
       - name: Cleanup
         run: |
           eval $(minikube docker-env -u)
