@@ -15,17 +15,17 @@ public class DepartmentService {
     DepartmentRepository departmentRepository;
 
     public void init() {
-        Department d1 = new Department("Department1");
-        Department d2 = new Department("Department2");
+        /*Department d1 = new Department("department1");
+        Department d2 = new Department("department2");
 
-        Story s1 = new Story("Story1", "Description1", d1);
-        Story s2 = new Story("Story2", "Description2", d2);
+        Story s1 = new Story("story1", "description1", d1);
+        Story s2 = new Story("story2", "description2", d2);
 
         d1.getStories().add(s1);
         d2.getStories().add(s2);
 
         departmentRepository.save(d1);
-        departmentRepository.save(d2);
+        departmentRepository.save(d2);*/
     }
 
     public List<Department> getDepartments() {

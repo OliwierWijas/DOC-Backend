@@ -13,6 +13,10 @@ public class StoryService {
     @Autowired
     StoryRepository storyRepository;
 
+    public List<Story> getStories() {
+        return storyRepository.findAll();
+    }
+
     public List<Story> getStoriesForDepartment(String departmentName) {
         return storyRepository.findByDepartmentName(departmentName);
     }

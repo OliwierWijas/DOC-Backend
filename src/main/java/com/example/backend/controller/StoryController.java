@@ -18,7 +18,10 @@ public class StoryController {
     }
     
     @GetMapping("/stories")
-    public List<Story> getStoriesForDepartment(@RequestParam(name = "departmentName") String departmentName) {
+    public List<Story> getStoriesForDepartment(@RequestParam(name = "departmentName", required = false) String departmentName) {
+        if (departmentName == null) {
+            return storyService.getStories();
+        }
         return storyService.getStoriesForDepartment(departmentName);
     }
 }
