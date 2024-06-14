@@ -2,7 +2,13 @@ package com.example.backend.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +29,21 @@ public class StoryController {
             return storyService.getStories();
         }
         return storyService.getStoriesForDepartment(departmentName);
+    }
+
+    @PostMapping("/stories")
+    public Story createStory(@RequestBody Story story) {
+        return storyService.createStory(story);
+    }
+
+    @PutMapping("/{id}")
+    public Story updateStory(@PathVariable int id, @RequestBody Story story) {
+        return storyService.updateStory(id, story);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStory(@PathVariable int id) {
+        storyService.deleteStory(id);
+        return ResponseEntity.noContent().build();
     }
 }

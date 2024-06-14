@@ -38,6 +38,10 @@ public class Department {
         return stories;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public void setStories(List<Story> stories) {
         this.stories = stories;
     }
