@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.model.Department;
 import com.example.backend.service.DepartmentService;
 
 @RestController
+@RequestMapping("/departments")
 public class DepartmentController {
     private DepartmentService departmentService;
 
@@ -22,17 +24,17 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
-    @GetMapping("/departments")
+    @GetMapping
     public List<Department> getDepartments() {
         return departmentService.getDepartments();
     }
 
-    @GetMapping("/departments/{departmentName}")
+    @GetMapping("/{departmentName}")
     public Department getDepartment(@PathVariable String departmentName) {
         return departmentService.getDepartment(departmentName);
     }
 
-    @PostMapping("/departments")
+    @PostMapping
     public Department createDepartment(@RequestBody Department department) {
         return departmentService.createDepartment(department);
     }

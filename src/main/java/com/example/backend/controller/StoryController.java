@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.example.backend.model.Story;
 import com.example.backend.service.StoryService;
 
 @RestController
+@RequestMapping("/stories")
 public class StoryController {
     private StoryService storyService;
     
@@ -23,7 +25,7 @@ public class StoryController {
         this.storyService = storyService;
     }
     
-    @GetMapping("/stories")
+    @GetMapping
     public List<Story> getStoriesForDepartment(@RequestParam(name = "departmentName", required = false) String departmentName) {
         if (departmentName == null) {
             return storyService.getStories();
@@ -31,7 +33,7 @@ public class StoryController {
         return storyService.getStoriesForDepartment(departmentName);
     }
 
-    @PostMapping("/stories")
+    @PostMapping
     public Story createStory(@RequestBody Story story) {
         return storyService.createStory(story);
     }
