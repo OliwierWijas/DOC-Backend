@@ -41,6 +41,7 @@ public class DepartmentController {
 
     @PutMapping("/{departmentName}")
     public Department updateDepartment(@PathVariable String departmentName, @RequestBody Department department) {
+
         return departmentService.updateDepartment(departmentName, department);
     }
 
