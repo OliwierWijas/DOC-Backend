@@ -18,7 +18,7 @@ spec:
         kompose.cmd: kompose convert
         kompose.version: 1.32.0 (765fde254)
       labels:
-        io.kompose.network/backend-default: "true"
+        io.kompose.network/doc-backend-default: "true"
         io.kompose.service: backend
     spec:
       containers:
@@ -34,7 +34,7 @@ spec:
           image: backend:v2
           name: assignment-backend-container
           ports:
-            - containerPort: 8080
-              hostPort: 8080
+            - containerPort: 8888
+              hostPort: 8888
               protocol: TCP
       restartPolicy: Always

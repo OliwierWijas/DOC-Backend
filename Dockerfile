@@ -7,5 +7,5 @@ RUN mvn -B package --file pom.xml -DskipTests
 
 FROM openjdk:17
 COPY --from=build /app/target/*jar backend-1.jar
-EXPOSE 8080
+EXPOSE 8888
 ENTRYPOINT ["java", "-jar", "backend-1.jar"]
