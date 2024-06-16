@@ -36,6 +36,7 @@ jobs:
           kubectl apply -f db-deployment.yaml
           kubectl apply -f db-persistentvolumeclaim.yaml
           kubectl apply -f db-service.yaml
+          kubectl get all
           kubectl wait --for=condition=Ready pod -l app=db
           kubectl wait --for=condition=Ready pod -l app=backend
           kubectl get all
