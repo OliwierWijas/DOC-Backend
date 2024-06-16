@@ -42,11 +42,11 @@ jobs:
       - name: Test backend service URLs
         run: |
           echo "SERVICE_URL=$(minikube service backend --url)"
-          kubectl port-forward service/backend 8080:8080 &> /dev/null &
+          kubectl port-forward service/backend 8888:8888 &> /dev/null &
           sleep 5
-          kubectl port-forward service/backend 8080:8080 &> /dev/null &
+          kubectl port-forward service/backend 8888:8888 &> /dev/null &
       - run: |
-          curl -i http://localhost:8080/
+          curl -i http://localhost:8888/
       - name: Cleanup
         run: |
           eval $(minikube docker-env -u)
