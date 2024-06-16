@@ -37,10 +37,11 @@ jobs:
           kubectl apply -f db-persistentvolumeclaim.yaml 2>&1 >/dev/null | tee /dev/stderr
           kubectl apply -f db-service.yaml 2>&1 >/dev/null | tee /dev/stderr
           kubectl get all
-          kubectl wait --for=condition=Ready pod -l app=db
-          kubectl wait --for=condition=Ready pod -l app=backend
+          sleep 25
+          kubectl wait --for=condition=Ready pod -l app=db-56c869845b
+          kubectl wait --for=condition=Ready pod -l app=backend-59db5f9c54
           kubectl get all
-          sleep 20
+          sleep 25
           echo "Deployment completed successfully"
       - name: Test backend service URLs
         run: |
