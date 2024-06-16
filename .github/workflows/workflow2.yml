@@ -19,22 +19,6 @@ jobs:
 
       - name: Run Tests
         run: mvn -B test
-  
-  #tests-frontend:
-  #  name: Unit tests - Frontend
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v4
-  #    - name: Set up Node.js
-  #      uses: actions/setup-node@v2
-  #      with:
-  #        node-version: '14'
-  #
-  #    - name: Install dependencies
-  #      run: npm install
-  #    
-  #    - name: Run Jest tests
-  #      run: npm test
 
   build:
     needs: tests-backend

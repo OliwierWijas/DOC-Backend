@@ -13,7 +13,6 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-
   backend:
     image: 'backend:v2'
     build:
@@ -28,16 +27,6 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-
-#  frontend:
-#    build:
-#      context: ../frontend/
-#    container_name: 'assignment-frontend-container'
-#    image: 'frontend:v2'
-#    ports:
-#      - 3000:3000
-#    depends_on:
-#      - backend
 
 volumes:
   db:
