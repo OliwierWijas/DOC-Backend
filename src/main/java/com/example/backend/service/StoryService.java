@@ -18,8 +18,8 @@ public class StoryService {
         return storyRepository.findAll();
     }
 
-    public List<Story> getStoriesForDepartment(String departmentName) {
-        return storyRepository.findByDepartmentName(departmentName);
+    public List<Story> getStoriesForDepartment(int departmentId) {
+        return storyRepository.findByDepartmentId(departmentId);
     }
 
     public Story createStory(Story story) {

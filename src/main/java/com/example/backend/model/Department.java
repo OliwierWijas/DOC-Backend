@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -14,20 +16,23 @@ import jakarta.persistence.Table;
 @Table(name = "department")
 public class Department {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
-    @OneToMany(
-        fetch = FetchType.LAZY,
-        cascade = CascadeType.ALL,
-        mappedBy = "department"
-    )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "department")
     @JsonIgnore
     private List<Story> stories;
 
-    public Department() {}
+    public Department() {
+    }
 
     public Department(String name) {
         this.name = name;
         this.stories = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -38,7 +43,7 @@ public class Department {
         return stories;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -48,6 +53,6 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department { name: " + name + "}";
+        return "Department { " + "\ndepartment: " + id + "\nname: " + name + " }";
     }
 }

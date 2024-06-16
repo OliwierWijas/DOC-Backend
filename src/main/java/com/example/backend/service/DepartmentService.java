@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.backend.model.Department;
-import com.example.backend.model.Story;
 import com.example.backend.repository.DepartmentRepository;
 import com.example.backend.repository.StoryRepository;
 
@@ -24,10 +23,10 @@ public class DepartmentService {
         return departmentRepository.findAll();
     }
 
-    public Department getDepartment(String name) {
+    public Department getDepartment(int departmentId) {
         Department temp = null;
         try {
-            temp = departmentRepository.findById(name).get();
+            temp = departmentRepository.findById(departmentId).get();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -38,23 +37,17 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
 
-    public Department updateDepartment(String departmentName, Department updatedDepartment) {
-        Optional<Department> optionalDepartment = departmentRepository.findById(departmentName);
+    public Department updateDepartment(int departmentId, Department updatedDepartment) {
+        Optional<Department> optionalDepartment = departmentRepository.findById(departmentId);
         if (optionalDepartment.isPresent()) {
             Department department = optionalDepartment.get();
-            Department returned = departmentRepository.save(updatedDepartment);
-            List<Story> stories = department.getStories();
-            for (Story story : stories) {
-                story.setDepartment(department);
-                storyRepository.save(story);
-            }
-            departmentRepository.deleteById(departmentName);
-            return returned;
+            department.setName(updatedDepartment.getName());
+            return departmentRepository.save(department);
         }
         return null;
     }
 
-    public void deleteDepartment(String departmentName) {
-        departmentRepository.deleteById(departmentName);
+    public void deleteDepartment(int departmentId) {
+        departmentRepository.deleteById(departmentId);
     }
 }

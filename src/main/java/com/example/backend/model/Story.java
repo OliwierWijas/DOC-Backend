@@ -18,7 +18,7 @@ public class Story {
     private String title;
     private String description;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "department_name", referencedColumnName = "name")
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department department;
 
     public Story() {}

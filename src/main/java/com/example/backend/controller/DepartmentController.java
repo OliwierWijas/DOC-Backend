@@ -29,9 +29,9 @@ public class DepartmentController {
         return departmentService.getDepartments();
     }
 
-    @GetMapping("/{departmentName}")
-    public Department getDepartment(@PathVariable String departmentName) {
-        return departmentService.getDepartment(departmentName);
+    @GetMapping("/{departmentId}")
+    public Department getDepartment(@PathVariable int departmentId) {
+        return departmentService.getDepartment(departmentId);
     }
 
     @PostMapping
@@ -39,15 +39,15 @@ public class DepartmentController {
         return departmentService.createDepartment(department);
     }
 
-    @PutMapping("/{departmentName}")
-    public Department updateDepartment(@PathVariable String departmentName, @RequestBody Department department) {
+    @PutMapping("/{departmentId}")
+    public Department updateDepartment(@PathVariable int departmentId, @RequestBody Department department) {
 
-        return departmentService.updateDepartment(departmentName, department);
+        return departmentService.updateDepartment(departmentId, department);
     }
 
-    @DeleteMapping("/{departmentName}")
-    public ResponseEntity<Void> deleteDepartment(@PathVariable String departmentName) {
-        departmentService.deleteDepartment(departmentName);
+    @DeleteMapping("/{departmentId}")
+    public ResponseEntity<Void> deleteDepartment(@PathVariable int departmentId) {
+        departmentService.deleteDepartment(departmentId);
         return ResponseEntity.noContent().build();
     }
 }

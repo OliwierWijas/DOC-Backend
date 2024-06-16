@@ -26,11 +26,11 @@ public class StoryController {
     }
     
     @GetMapping
-    public List<Story> getStoriesForDepartment(@RequestParam(name = "departmentName", required = false) String departmentName) {
-        if (departmentName == null) {
+    public List<Story> getStoriesForDepartment(@RequestParam(name = "departmentId", required = false) int departmentId) {
+        if (departmentId == 0) {
             return storyService.getStories();
         }
-        return storyService.getStoriesForDepartment(departmentName);
+        return storyService.getStoriesForDepartment(departmentId);
     }
 
     @PostMapping
