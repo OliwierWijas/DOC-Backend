@@ -32,7 +32,6 @@ public class StoryTest {
         assertEquals("New Description", story.getDescription());
         assertEquals(department, story.getDepartment());
 
-        // Ensure that setting department to null works
         story.setDepartment(null);
         assertNull(story.getDepartment());
     }

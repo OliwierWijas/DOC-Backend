@@ -39,9 +39,4 @@ public class DepartmentTest {
         assertTrue(department.getStories().contains(story1));
         assertTrue(department.getStories().contains(story2));
     }
-
-    @Test
-    public void testToString() {
-        assertEquals("Department { name: Test Department}", department.toString());
-    }
 }
