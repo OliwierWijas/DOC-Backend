@@ -31,15 +31,16 @@ jobs:
       - name: Deploy to minikube
         run: |
           kompose convert
-          kubectl apply -f backend-deployment.yaml
-          kubectl apply -f backend-service.yaml
-          kubectl apply -f db-deployment.yaml
-          kubectl apply -f db-persistentvolumeclaim.yaml
-          kubectl apply -f db-service.yaml
+          kubectl apply -f backend-deployment.yaml 2>&1 >/dev/null | tee /dev/stderr
+          kubectl apply -f backend-service.yaml 2>&1 >/dev/null | tee /dev/stderr
+          kubectl apply -f db-deployment.yaml 2>&1 >/dev/null | tee /dev/stderr
+          kubectl apply -f db-persistentvolumeclaim.yaml 2>&1 >/dev/null | tee /dev/stderr
+          kubectl apply -f db-service.yaml 2>&1 >/dev/null | tee /dev/stderr
           kubectl get all
           kubectl wait --for=condition=Ready pod -l app=db
           kubectl wait --for=condition=Ready pod -l app=backend
           kubectl get all
+          sleep 20
           echo "Deployment completed successfully"
       - name: Test backend service URLs
         run: |
