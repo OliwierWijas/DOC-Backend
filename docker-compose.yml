@@ -28,6 +28,16 @@ services:
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
+  frontend-doc:
+    build:
+      context: ../../DOC-Frontend/DOC-Frontend
+    container_name: 'assignment-frontend1-container'
+    image: 'frontend:v2'
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+
 volumes:
   db:
     driver: local
