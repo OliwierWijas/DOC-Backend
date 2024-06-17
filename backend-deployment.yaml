@@ -34,7 +34,7 @@ spec:
           image: backend:v2
           name: assignment-backend-container
           ports:
-            - containerPort: 8888
-              hostPort: 8888
+            - containerPort: 8080
+              hostPort: 8080
               protocol: TCP
       restartPolicy: Always
